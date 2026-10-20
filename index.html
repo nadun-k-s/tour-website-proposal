@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Website development proposal for a Sri Lanka tour packages business. Compare three website packages, features, maintenance and terms.">
+  <meta name="theme-color" content="#123247">
+  <title>Tour Website Proposal | Sri Lanka</title>
+  <style>
+    :root {
+      --navy: #123247;
+      --navy2: #1b465b;
+      --teal: #0b8b83;
+      --teal-light: #e6f6f3;
+      --gold: #f2b65d;
+      --ink: #172b38;
+      --muted: #607381;
+      --line: #dce6eb;
+      --paper: #ffffff;
+      --bg: #f3f7f8;
+      --soft: #f7fafb;
+      --shadow: 0 18px 55px rgba(18,50,71,.09);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 36px)); margin: auto; }
+    .topbar { background: var(--navy); color: #eaf4f6; font-size: .83rem; }
+    .topbar .wrap { display:flex; justify-content:space-between; gap:16px; padding:10px 0; flex-wrap:wrap; }
+    .brandrow { display:flex; align-items:center; gap:11px; font-weight:800; letter-spacing:.01em; }
+    .brandmark { width:38px; height:38px; border-radius:13px; background:var(--gold); color:var(--navy); display:grid; place-items:center; font-weight:900; }
+    header { background:var(--paper); border-bottom:1px solid var(--line); }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:18px 0; }
+    nav { display:flex; gap:22px; flex-wrap:wrap; }
+    nav a { text-decoration:none; font-size:.92rem; color:var(--muted); font-weight:650; }
+    nav a:hover { color:var(--teal); }
+    .hero { position:relative; overflow:hidden; background:linear-gradient(125deg, #102f43 0%, #1a5364 63%, #137f79 100%); color:white; padding:74px 0 68px; }
+    .hero:after { content:""; position:absolute; width:480px; height:480px; border:1px solid rgba(255,255,255,.13); border-radius:50%; right:-130px; top:-170px; box-shadow:0 0 0 45px rgba(255,255,255,.025), 0 0 0 95px rgba(255,255,255,.025); }
+    .hero-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:42px; align-items:center; position:relative; z-index:1; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(255,255,255,.25); padding:7px 12px; border-radius:999px; color:#d5f1ed; font-size:.78rem; text-transform:uppercase; letter-spacing:.12em; font-weight:800; }
+    h1 { font-size:clamp(2.4rem, 5vw, 4.2rem); line-height:1.05; letter-spacing:-.045em; margin:20px 0 18px; max-width:760px; }
+    .hero p { color:#d9e8ed; font-size:1.08rem; max-width:660px; margin:0 0 25px; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { display:inline-flex; justify-content:center; align-items:center; gap:8px; padding:12px 18px; border-radius:12px; text-decoration:none; border:1px solid transparent; font-weight:800; font-size:.93rem; transition:.2s ease; cursor:pointer; }
+    .btn-primary { background:var(--gold); color:var(--navy); }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.16); }
+    .btn-ghost { border-color:rgba(255,255,255,.35); color:white; }
+    .btn-ghost:hover { background:rgba(255,255,255,.08); }
+    .hero-card { background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.19); border-radius:24px; padding:25px; backdrop-filter:blur(10px); }
+    .hero-card .mini { color:#b9d7de; font-size:.78rem; text-transform:uppercase; letter-spacing:.1em; font-weight:800; }
+    .hero-card .big { font-size:2.25rem; font-weight:900; letter-spacing:-.04em; margin:8px 0 2px; }
+    .hero-card p { font-size:.9rem; margin:0; }
+    .hero-points { list-style:none; margin:18px 0 0; padding:0; display:grid; gap:10px; }
+    .hero-points li { display:flex; gap:9px; color:#f1f7f8; font-size:.9rem; }
+    .tick { color:#8ee0c8; font-weight:900; }
+    section { padding:68px 0; }
+    .section-head { max-width:720px; margin-bottom:30px; }
+    .kicker { color:var(--teal); font-size:.78rem; font-weight:900; text-transform:uppercase; letter-spacing:.13em; }
+    h2 { font-size:clamp(1.8rem,3vw,2.65rem); line-height:1.15; letter-spacing:-.035em; margin:8px 0 12px; color:var(--navy); }
+    .section-head p { color:var(--muted); margin:0; }
+    .packages { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:stretch; }
+    .package { background:white; border:1px solid var(--line); border-radius:var(--radius); padding:25px; box-shadow:0 8px 25px rgba(18,50,71,.035); display:flex; flex-direction:column; position:relative; }
+    .package.featured { border:2px solid var(--teal); box-shadow:var(--shadow); transform:translateY(-7px); }
+    .recommended { position:absolute; top:-14px; right:20px; border-radius:999px; padding:5px 11px; background:var(--teal); color:white; font-size:.72rem; font-weight:900; letter-spacing:.04em; }
+    .package-tag { color:var(--teal); font-size:.75rem; text-transform:uppercase; font-weight:900; letter-spacing:.1em; }
+    .package h3 { font-size:1.3rem; color:var(--navy); margin:8px 0 4px; line-height:1.25; }
+    .price { font-size:2rem; line-height:1.2; font-weight:900; color:var(--navy); letter-spacing:-.04em; margin:14px 0 2px; }
+    .price-note { color:var(--teal); font-size:.8rem; font-weight:800; }
+    .package-intro { color:var(--muted); font-size:.9rem; min-height:66px; margin:14px 0; }
+    .package ul { padding:0; margin:0 0 20px; list-style:none; }
+    .package li { padding:8px 0; border-bottom:1px solid #eef2f4; font-size:.87rem; display:flex; gap:9px; }
+    .package li:before { content:"✓"; color:var(--teal); font-weight:900; }
+    .package .btn { width:100%; margin-top:auto; }
+    .btn-dark { background:var(--navy); color:white; }
+    .btn-dark:hover { background:var(--navy2); }
+    .note { margin-top:22px; padding:15px 18px; background:var(--teal-light); border:1px solid #c7e9e4; border-radius:14px; color:#235c5a; font-size:.9rem; }
+    .feature-band { background:white; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .feature-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .feature { background:var(--soft); border:1px solid var(--line); border-radius:16px; padding:19px; }
+    .feature .icon { font-size:1.4rem; margin-bottom:8px; }
+    .feature h3 { margin:0 0 5px; font-size:1rem; color:var(--navy); }
+    .feature p { color:var(--muted); font-size:.85rem; margin:0; }
+    .table-wrap { overflow-x:auto; border-radius:18px; border:1px solid var(--line); background:white; box-shadow:0 8px 25px rgba(18,50,71,.035); }
+    table { width:100%; border-collapse:collapse; min-width:760px; }
+    th, td { text-align:left; padding:14px 16px; border-bottom:1px solid var(--line); font-size:.88rem; vertical-align:top; }
+    th { background:var(--navy); color:white; font-size:.8rem; letter-spacing:.03em; }
+    tr:last-child td { border-bottom:0; }
+    tbody tr:nth-child(even) { background:#f8fafb; }
+    td:first-child { font-weight:750; color:var(--navy); }
+    .yes { color:#087c70; font-weight:900; }
+    .no { color:#83919a; }
+    .maintenance-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .info-card { background:white; border:1px solid var(--line); border-radius:18px; padding:24px; }
+    .info-card h3 { margin:0 0 12px; color:var(--navy); }
+    .info-card p, .info-card li { color:var(--muted); font-size:.91rem; }
+    .info-card ul { padding-left:20px; margin-bottom:0; }
+    .callout { background:var(--navy); color:white; border-radius:22px; padding:30px; display:grid; grid-template-columns:1fr auto; gap:22px; align-items:center; }
+    .callout h2 { color:white; margin:0 0 8px; }
+    .callout p { color:#cddfe5; margin:0; }
+    .terms { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    details { background:white; border:1px solid var(--line); border-radius:14px; padding:15px 17px; }
+    summary { cursor:pointer; color:var(--navy); font-weight:800; }
+    details p, details li { color:var(--muted); font-size:.88rem; }
+    details ul { padding-left:20px; }
+    footer { background:#0c2636; color:#c2d4db; padding:28px 0; font-size:.85rem; }
+    footer .wrap { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+    .fine { color:var(--muted); font-size:.8rem; }
+    .pill { display:inline-block; background:var(--gold); color:var(--navy); padding:4px 9px; border-radius:999px; font-weight:900; font-size:.72rem; }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns:1fr; }
+      .hero-card { max-width:520px; }
+      .packages { grid-template-columns:1fr; }
+      .package.featured { transform:none; }
+      .package-intro { min-height:0; }
+      .feature-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width: 620px) {
+      .wrap { width:min(100% - 26px,1120px); }
+      .nav { align-items:flex-start; flex-direction:column; gap:12px; }
+      nav { gap:12px 17px; }
+      .hero { padding:52px 0; }
+      section { padding:48px 0; }
+      .feature-grid, .maintenance-grid, .terms { grid-template-columns:1fr; }
+      .callout { grid-template-columns:1fr; padding:24px; }
+      .price { font-size:1.8rem; }
+      .topbar .wrap { gap:5px; }
+    }
+    @media print {
+      body { background:white; }
+      .topbar, nav, .hero-actions, .package .btn, .callout .btn { display:none !important; }
+      .hero { padding:28px 0; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+      section { padding:25px 0; }
+      .packages { grid-template-columns:repeat(3,1fr); gap:8px; }
+      .package { padding:13px; box-shadow:none; break-inside:avoid; }
+      .package.featured { transform:none; }
+      .feature-grid { grid-template-columns:repeat(2,1fr); }
+      .table-wrap { overflow:visible; }
+      table { min-width:0; font-size:8px; }
+      th, td { padding:6px; font-size:8px; }
+      details { break-inside:avoid; }
+      a { text-decoration:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <span>WEBSITE DEVELOPMENT PROPOSAL</span>
+      <span>All prices in LKR · Prices are negotiable</span>
+    </div>
+  </div>
+  <header>
+    <div class="wrap nav">
+      <div class="brandrow"><div class="brandmark">SL</div><span>Sri Lanka Tour Website</span></div>
+      <nav aria-label="Main navigation">
+        <a href="#packages">Packages</a>
+        <a href="#comparison">Compare</a>
+        <a href="#maintenance">Maintenance</a>
+        <a href="#terms">Terms</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Tourism Website · .com Domain</span>
+          <h1>Turn Sri Lanka tours into a journey guests can explore.</h1>
+          <p>A responsive website to showcase tour packages, destinations, itineraries and prices, with a direct WhatsApp enquiry path for travellers planning their Sri Lankan adventure.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#packages">Explore packages <span aria-hidden="true">↘</span></a>
+            <a class="btn btn-ghost" href="#comparison">Compare options</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <div class="mini">Three flexible options</div>
+          <div class="big">LKR 115K–225K</div>
+          <p>Choose the website that fits your current needs, with room to expand later.</p>
+          <ul class="hero-points">
+            <li><span class="tick">✓</span> Mobile-friendly design</li>
+            <li><span class="tick">✓</span> WhatsApp enquiries</li>
+            <li><span class="tick">✓</span> First-year .com domain and hosting</li>
+            <li><span class="tick">✓</span> Negotiable package prices</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="packages">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Choose your package</div>
+          <h2>Three ways to get your tour business online</h2>
+          <p>Each option includes website deployment and first-year domain and hosting. The main difference is how much content control and enhanced functionality you need.</p>
+        </div>
+        <div class="packages">
+          <article class="package">
+            <div class="package-tag">Option 01 · Essential</div>
+            <h3>Basic Static Website</h3>
+            <div class="price">LKR 115,000</div>
+            <div class="price-note">Price negotiable</div>
+            <p class="package-intro">A simple, professional online presence for showcasing tours and receiving enquiries.</p>
+            <ul>
+              <li>Two main pages: Home and Packages</li>
+              <li>Responsive mobile and desktop layout</li>
+              <li>Tour details, prices and destinations</li>
+              <li>Photo gallery and basic SEO</li>
+              <li>WhatsApp enquiry buttons</li>
+              <li>Initial setup for up to 10 packages</li>
+              <li>.com domain and hosting for year one</li>
+            </ul>
+            <a class="btn btn-dark" href="#comparison">View details</a>
+          </article>
+
+          <article class="package featured">
+            <div class="recommended">RECOMMENDED VALUE</div>
+            <div class="package-tag">Option 02 · Business</div>
+            <h3>Website + Admin Dashboard</h3>
+            <div class="price">LKR 150,000</div>
+            <div class="price-note">Price negotiable</div>
+            <p class="package-intro">Manage tour packages, prices and itineraries without asking the developer to make every routine update.</p>
+            <ul>
+              <li>Everything in Basic</li>
+              <li>Secure admin login and dashboard</li>
+              <li>Add, edit and publish/unpublish tours</li>
+              <li>Manage prices, durations and locations</li>
+              <li>Manage itineraries and destination details</li>
+              <li>Upload and manage tour images</li>
+              <li>.com domain and hosting for year one</li>
+            </ul>
+            <a class="btn btn-dark" href="#comparison">View details</a>
+          </article>
+
+          <article class="package">
+            <div class="package-tag">Option 03 · Premium</div>
+            <h3>Premium Tourism Website</h3>
+            <div class="price">LKR 225,000</div>
+            <div class="price-note">Price negotiable</div>
+            <p class="package-intro">A more polished visitor experience, enhanced package discovery, and limited technical maintenance included for 12 months.</p>
+            <ul>
+              <li>Everything in Business</li>
+              <li>Enhanced custom UI/UX design</li>
+              <li>Tour categories and visitor filtering</li>
+              <li>Featured and popular tour controls</li>
+              <li>Enhanced galleries and itinerary layouts</li>
+              <li>Enquiry form with dates and guest count</li>
+              <li>12 months of limited technical maintenance</li>
+            </ul>
+            <a class="btn btn-dark" href="#comparison">View details</a>
+          </article>
+        </div>
+        <div class="note"><strong>Negotiable pricing:</strong> All three package prices are open to discussion. Final pricing will be agreed after confirming the requirements and scope. New features or work outside the selected package will be quoted separately.</div>
+      </div>
+    </section>
+
+    <section class="feature-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Built for travel enquiries</div>
+          <h2>What the website helps guests do</h2>
+          <p>Present useful tour information clearly, then make it easy for visitors to start a conversation.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature"><div class="icon">🗺️</div><h3>Explore itineraries</h3><p>See destinations, route details, trip duration and day-by-day activities.</p></div>
+          <div class="feature"><div class="icon">💰</div><h3>Understand pricing</h3><p>Review package prices and key inclusions before contacting the operator.</p></div>
+          <div class="feature"><div class="icon">📱</div><h3>Enquire on WhatsApp</h3><p>Start a direct chat, with package-specific enquiry text where supported.</p></div>
+          <div class="feature"><div class="icon">🛠️</div><h3>Manage tours</h3><p>With the dashboard packages, update supported tour content yourself.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="comparison">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Side-by-side comparison</div>
+          <h2>Know exactly what is included</h2>
+          <p>Features are limited to the agreed scope. The comparison below summarizes the planned deliverables for each package.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Feature</th><th>Basic · 115,000</th><th>Business · 150,000</th><th>Premium · 225,000</th></tr></thead>
+            <tbody>
+              <tr><td>Home and tour packages</td><td class="yes">Included</td><td class="yes">Included</td><td class="yes">Included</td></tr>
+              <tr><td>Responsive design</td><td class="yes">Included</td><td class="yes">Included</td><td class="yes">Enhanced design</td></tr>
+              <tr><td>WhatsApp enquiries</td><td class="yes">Included</td><td class="yes">Included</td><td class="yes">Included</td></tr>
+              <tr><td>Admin dashboard</td><td class="no">Not included</td><td class="yes">Basic</td><td class="yes">Enhanced</td></tr>
+              <tr><td>Tour and price updates</td><td>Developer request</td><td>Self-managed</td><td>Self-managed</td></tr>
+              <tr><td>Itinerary management</td><td>Static content</td><td>Basic</td><td>Enhanced presentation</td></tr>
+              <tr><td>Tour filtering/categories</td><td class="no">Not included</td><td>Basic categories as agreed</td><td class="yes">Enhanced</td></tr>
+              <tr><td>Initial content setup</td><td>Up to 10 tours</td><td>Up to 10 tours</td><td>Up to 15 tours</td></tr>
+              <tr><td>.com domain + hosting</td><td>First year</td><td>First year</td><td>First year</td></tr>
+              <tr><td>Defect support</td><td>First 30 days</td><td>First 30 days</td><td>First 30 days</td></tr>
+              <tr><td>Maintenance after month 1</td><td>LKR 5,000/month if requested</td><td>LKR 5,000/month if requested</td><td>Limited technical maintenance included for 12 months</td></tr>
+              <tr><td>New features after launch</td><td>Quoted separately</td><td>Quoted separately</td><td>Quoted separately</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine">Online payments, automated bookings/reservations, customer accounts and complex seasonal pricing are not included unless separately agreed in writing.</p>
+      </div>
+    </section>
+
+    <section id="maintenance" class="feature-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">After launch</div>
+          <h2>Maintenance and change requests</h2>
+          <p>Routine support is defined separately from new development so that expectations and costs remain clear.</p>
+        </div>
+        <div class="maintenance-grid">
+          <div class="info-card">
+            <h3>Basic and Business packages</h3>
+            <p><span class="pill">LKR 5,000 / month</span></p>
+            <ul>
+              <li>First 30 days: defect support included.</li>
+              <li>From month two: optional maintenance at LKR 5,000 per month if requested.</li>
+              <li>For Basic, content and price changes are developer requests and charged separately.</li>
+              <li>For Business, the client can edit supported tour content through the dashboard.</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Premium package</h3>
+            <p><span class="pill">12 months included</span></p>
+            <ul>
+              <li>Routine technical upkeep and compatible security updates.</li>
+              <li>Basic uptime checks and backup assistance where supported by the hosting plan.</li>
+              <li>Fixes for reproducible defects in delivered functionality.</li>
+              <li>Does not include new features, redesigns, new pages, bulk content work, new integrations, or major structural changes.</li>
+              <li>After year one, maintenance can be renewed by agreement, suggested from LKR 10,000 per month.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="note"><strong>Change request policy:</strong> Any post-deployment request, including content changes, design modifications, additional pages, new features, integrations, or structural changes, may incur additional charges based on the requirements and estimated effort. A separate estimate will be shared for approval before work starts.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="callout">
+          <div>
+            <h2>Domain and hosting, managed for you</h2>
+            <p>First-year .com registration and shared hosting are included in every package. The developer will handle domain setup, DNS, hosting configuration, SSL setup and renewal coordination. Renewal charges after year one are additional and will be communicated in advance.</p>
+          </div>
+          <a class="btn btn-primary" href="#terms">Read terms</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="terms">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Project terms</div>
+          <h2>Clear scope. No surprises.</h2>
+          <p>Please review the key terms before confirming a package.</p>
+        </div>
+        <div class="terms">
+          <details open>
+            <summary>Payment schedule</summary>
+            <ul>
+              <li>40% advance payment upon project confirmation.</li>
+              <li>40% when the working website is presented for review.</li>
+              <li>20% before production deployment and handover.</li>
+            </ul>
+          </details>
+          <details open>
+            <summary>Scope and revisions</summary>
+            <p>Only the features listed in the selected package are included. Two revision rounds are included within the agreed scope. Unlisted functionality requires written agreement and may cost extra.</p>
+          </details>
+          <details>
+            <summary>Client responsibilities</summary>
+            <p>The client provides the logo, approved tour details, prices, descriptions and photographs, unless otherwise agreed. The client must review and approve tour information and pricing before publication.</p>
+          </details>
+          <details>
+            <summary>Domain ownership and renewals</summary>
+            <p>The developer will manage domain and hosting operations. The domain will be registered for the client's business, with registration details and ownership arrangements documented. First-year domain and hosting are included; renewals after year one are paid separately by the client.</p>
+          </details>
+          <details>
+            <summary>Defect support</summary>
+            <p>30 days of defect support after deployment covers reproducible faults in the delivered functionality. It does not cover new features, changed requirements, unauthorized modifications, or third-party service failures.</p>
+          </details>
+          <details>
+            <summary>Third-party services and taxes</summary>
+            <p>Paid third-party subscriptions, transaction fees and other external service costs are excluded unless stated otherwise. Any applicable taxes will be clarified before project confirmation.</p>
+          </details>
+          <details>
+            <summary>Delivery and validity</summary>
+            <p>Estimated delivery is 2–3 weeks for Basic, 3–5 weeks for Business, and 4–6 weeks for Premium, once scope, advance payment and required content are received. Proposal validity: 14 days.</p>
+          </details>
+          <details>
+            <summary>Bookings and online payments</summary>
+            <p>Automated booking management, online payment processing, customer accounts, reservation workflows and complex seasonal pricing are excluded unless separately agreed in writing.</p>
+          </details>
+        </div>
+        <div class="note"><strong>Next step:</strong> Select a package and confirm the final requirements. All listed package prices are negotiable. A final written scope and agreed price will be confirmed before development begins.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Website Development Proposal · Sri Lanka Tour Packages</span>
+      <span>Prepared for discussion · Prices in LKR · All package prices negotiable</span>
+    </div>
+  </footer>
+</body>
+</html>
